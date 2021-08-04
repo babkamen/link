@@ -15,3 +15,5 @@
 
 # Ignore tmp files
 tmp/*
+
+.idea/

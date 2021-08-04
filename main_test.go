@@ -20,7 +20,12 @@ func TestParse(t *testing.T) {
 			"https://github.com/gophercises":     "Gophercises is on Github!",
 		}},
 		{inputFile: "ex3.html", want: map[string]string{
-			"https://www.twitter.com/joncalhoun": "Check me out on twitter",
+			"#":                                "Login",
+			"/lost":                            "Lost? Need help?",
+			"https://twitter.com/marcusolsson": "@marcusolsson",
+		}},
+		{inputFile: "ex4.html", want: map[string]string{
+			"/dog-cat": "dog cat",
 		}},
 	}
 
