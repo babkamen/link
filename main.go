@@ -16,8 +16,8 @@ func main() {
 	fmt.Println("Links ", links)
 }
 
-func Parse(file *os.File) (links map[string]string) {
-	result := make(map[string]string)
+func Parse(file *os.File) (links []Link) {
+	result := make([]Link, 0)
 	z := html.NewTokenizer(file)
 	var found bool
 	var link string
@@ -50,7 +50,7 @@ func Parse(file *os.File) (links map[string]string) {
 			if len(tn) == 1 && tn[0] == 'a' {
 				text = strings.TrimLeft(text, "\n ")
 				text = strings.TrimRight(text, "\n ")
-				result[link] = text
+				result = append(result, Link{link, text})
 				found = false
 				link = ""
 				text = ""
@@ -64,4 +64,9 @@ func logFatal(message string, err error) {
 	if err != nil {
 		log.Fatal(message, " ", err)
 	}
+}
+
+type Link struct {
+	Href string
+	Text string
 }

@@ -34,9 +34,17 @@ func TestParse(t *testing.T) {
 		if err != nil {
 			t.Error("Error while reading file", err)
 		}
-		got := Parse(file)
+		got := convertToMap(Parse(file))
 		if !reflect.DeepEqual(tc.want, got) {
 			t.Fatalf("expected: %v, got: %v", tc.want, got)
 		}
 	}
+}
+
+func convertToMap(links []Link) map[string]string {
+	result := make(map[string]string, len(links))
+	for _, link := range links {
+		result[link.Href] = link.Text
+	}
+	return result
 }
